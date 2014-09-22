@@ -22,6 +22,11 @@ package br.com.surittec.util.data;
 
 import java.util.regex.Matcher;
 
+/**
+ * 
+ * @author Lucas Lins
+ *
+ */
 public abstract class EmailUtil {
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

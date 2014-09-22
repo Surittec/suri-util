@@ -20,6 +20,11 @@
  */
 package br.com.surittec.util.dto;
 
+/**
+ * 
+ * @author Lucas Lins
+ *
+ */
 public class Message {
 
 	/*

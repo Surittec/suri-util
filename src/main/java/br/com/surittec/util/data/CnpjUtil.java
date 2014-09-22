@@ -23,6 +23,11 @@ package br.com.surittec.util.data;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 
+ * @author Lucas Lins
+ *
+ */
 public abstract class CnpjUtil {
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

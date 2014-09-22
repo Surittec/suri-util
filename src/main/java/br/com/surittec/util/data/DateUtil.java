@@ -23,22 +23,40 @@ package br.com.surittec.util.data;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+/**
+ * 
+ * @author Lucas Lins
+ *
+ */
 public class DateUtil {
 	
 	private static final int MILLISECOND_TO_DAY = 1000 * 60 * 60 * 24;
 	private static final int MILLISECOND_TO_MINUTE = 1000 * 60;
+
+	/*
+	 * Get Calendar by Locale
+	 */
+	
+	public static Calendar getCalendar(Locale locale){
+		return locale != null ? Calendar.getInstance(locale) : Calendar.getInstance();
+	}
 	
 	/*
 	 * First / Last
 	 */
 	
 	public static Date toFirstTime(Date date) {
-		Calendar cal = Calendar.getInstance();
+		return toFirstTime(date, null);
+	}
+	
+	public static Date toFirstTime(Date date, Locale locale) {
+		Calendar cal = getCalendar(locale);
 		cal.setTime(date);
 		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 0, 0, 0);
 		cal.set(Calendar.MILLISECOND, 0);
@@ -46,7 +64,11 @@ public class DateUtil {
 	}
 	
 	public static Date toLastTime(Date date) {
-		Calendar cal = Calendar.getInstance();
+		return toLastTime(date, null);
+	}
+	
+	public static Date toLastTime(Date date, Locale locale) {
+		Calendar cal = getCalendar(locale);
 		cal.setTime(date);
 		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 23, 59, 59);
 		cal.set(Calendar.MILLISECOND, 999);
@@ -54,21 +76,33 @@ public class DateUtil {
 	}
 	
 	public static Date toFirstDateOfMonth(Date date){
-		Calendar cal = Calendar.getInstance();
+		return toFirstDateOfMonth(date, null);
+	}
+	
+	public static Date toFirstDateOfMonth(Date date, Locale locale){
+		Calendar cal = getCalendar(locale);
 		cal.setTime(date);
 		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH)); 
 		return toFirstTime(cal.getTime());
 	}
 	
 	public static Date toLastDateOfMonth(Date date){
-		Calendar cal = Calendar.getInstance();
+		return toLastDateOfMonth(date, null);
+	}
+	
+	public static Date toLastDateOfMonth(Date date, Locale locale){
+		Calendar cal = getCalendar(locale);
 		cal.setTime(date);
 		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH)); 
 		return toLastTime(cal.getTime());
 	}
 	
 	public static Date toFirstDateOfYear(Date date){
-		Calendar cal = Calendar.getInstance();
+		return toFirstDateOfYear(date, null);
+	}
+	
+	public static Date toFirstDateOfYear(Date date, Locale locale){
+		Calendar cal = getCalendar(locale);
 		cal.setTime(date);
 		cal.set(Calendar.DAY_OF_MONTH, 1);
 		cal.set(Calendar.MONTH, Calendar.JANUARY);
@@ -76,7 +110,11 @@ public class DateUtil {
 	}
 	
 	public static Date toLastDateOfYear(Date date){
-		Calendar cal = Calendar.getInstance();
+		return toLastDateOfYear(date, null);
+	}
+	
+	public static Date toLastDateOfYear(Date date, Locale locale){
+		Calendar cal = getCalendar(locale);
 		cal.setTime(date);
 		cal.set(Calendar.MONTH, Calendar.DECEMBER);
 		cal.set(Calendar.DAY_OF_MONTH, 31);
@@ -88,63 +126,123 @@ public class DateUtil {
 	 */
 	
 	public static Date addMillisecond(Date date, int amount){
-		return addToField(date, Calendar.MILLISECOND, amount);
+		return addMillisecond(date, amount, null);
+	}
+	
+	public static Date addMillisecond(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.MILLISECOND, amount, locale);
 	}
 	
 	public static Date subMillisecond(Date date, int amount){
-		return addToField(date, Calendar.MILLISECOND, amount * -1);
+		return subMillisecond(date, amount, null);
+	}
+	
+	public static Date subMillisecond(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.MILLISECOND, amount * -1, locale);
 	}
 	
 	public static Date addSecond(Date date, int amount){
-		return addToField(date, Calendar.SECOND, amount);
+		return addSecond(date, amount, null);
+	}
+	
+	public static Date addSecond(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.SECOND, amount, locale);
 	}
 	
 	public static Date subSecond(Date date, int amount){
-		return addToField(date, Calendar.SECOND, amount * -1);
+		return subSecond(date, amount, null);
+	}
+	
+	public static Date subSecond(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.SECOND, amount * -1, locale);
 	}
 	
 	public static Date addMinute(Date date, int amount){
-		return addToField(date, Calendar.MINUTE, amount);
+		return addMinute(date, amount, null);
+	}
+	
+	public static Date addMinute(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.MINUTE, amount, locale);
 	}
 	
 	public static Date subMinute(Date date, int amount){
-		return addToField(date, Calendar.MINUTE, amount * -1);
+		return subMinute(date, amount, null);
+	}
+	
+	public static Date subMinute(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.MINUTE, amount * -1, locale);
 	}
 	
 	public static Date addHour(Date date, int amount){
-		return addToField(date, Calendar.HOUR_OF_DAY, amount);
+		return addHour(date, amount, null);
+	}
+	
+	public static Date addHour(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.HOUR_OF_DAY, amount, locale);
 	}
 	
 	public static Date subHour(Date date, int amount){
-		return addToField(date, Calendar.HOUR_OF_DAY, amount * -1);
+		return subHour(date, amount, null);
+	}
+	
+	public static Date subHour(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.HOUR_OF_DAY, amount * -1, locale);
 	}
 	
 	public static Date addDay(Date date, int amount){
-		return addToField(date, Calendar.DAY_OF_MONTH, amount);
+		return addDay(date, amount, null);
+	}
+	
+	public static Date addDay(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.DAY_OF_MONTH, amount, locale);
 	}
 	
 	public static Date subDay(Date date, int amount){
-		return addToField(date, Calendar.DAY_OF_MONTH, amount * -1);
+		return subDay(date, amount, null);
+	}
+	
+	public static Date subDay(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.DAY_OF_MONTH, amount * -1, locale);
 	}
 	
 	public static Date addMonth(Date date, int amount){
-		return addToField(date, Calendar.MONTH, amount);
+		return addMonth(date, amount, null);
+	}
+	
+	public static Date addMonth(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.MONTH, amount, locale);
 	}
 	
 	public static Date subMonth(Date date, int amount){
-		return addToField(date, Calendar.MONTH, amount * -1);
+		return subMonth(date, amount, null);
+	}
+	
+	public static Date subMonth(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.MONTH, amount * -1, locale);
 	}
 	
 	public static Date addYear(Date date, int amount){
-		return addToField(date, Calendar.YEAR, amount);
+		return addYear(date, amount, null);
+	}
+	
+	public static Date addYear(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.YEAR, amount, locale);
 	}
 	
 	public static Date subYear(Date date, int amount){
-		return addToField(date, Calendar.YEAR, amount * -1);
+		return subYear(date, amount, null);
+	}
+	
+	public static Date subYear(Date date, int amount, Locale locale){
+		return addToField(date, Calendar.YEAR, amount * -1, locale);
 	}
 	
 	public static Date addToField(Date date, int field, int amount){
-		Calendar calendar = Calendar.getInstance();
+		return addToField(date, field, amount, null);
+	}
+	
+	public static Date addToField(Date date, int field, int amount, Locale locale){
+		Calendar calendar = getCalendar(locale);
 		calendar.setTime(date);
 		calendar.add(field, amount);
 		return calendar.getTime();
@@ -159,13 +257,17 @@ public class DateUtil {
 	}
 	
 	public static XMLGregorianCalendar toXmlGregorianDate(long date) {
+		return toXmlGregorianDate(date, null);
+	}
+	
+	public static XMLGregorianCalendar toXmlGregorianDate(long date, Locale locale) {
 		DatatypeFactory dataTypeFactory;
 		try {
 			dataTypeFactory = DatatypeFactory.newInstance();
 		} catch (DatatypeConfigurationException e) {
 			throw new RuntimeException(e);
 		}
-		GregorianCalendar gc = new GregorianCalendar();
+		GregorianCalendar gc = locale != null ? new GregorianCalendar(locale) : new GregorianCalendar();
 		gc.setTimeInMillis(date);
 		return dataTypeFactory.newXMLGregorianCalendar(gc);
 	}
@@ -183,10 +285,10 @@ public class DateUtil {
 	}
 	
 	public static int yearsBetween(Date from, Date to){
-		Calendar fromC = Calendar.getInstance();
+		Calendar fromC = getCalendar(null);
         fromC.setTime(from);
         
-        Calendar toC = Calendar.getInstance();
+        Calendar toC = getCalendar(null);
         toC.setTime(to);
         
         int years = toC.get(Calendar.YEAR) - fromC.get(Calendar.YEAR);
