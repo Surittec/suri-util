@@ -68,7 +68,7 @@
 	
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
-		<jdk.version>1.6</jdk.version>
+		<jdk.version>1.7</jdk.version>
 		
 		<!-- Plugins Versions -->
 		
