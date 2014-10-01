@@ -18,7 +18,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package br.com.surittec.util.dto;
+package br.com.surittec.util.message;
 
 /**
  * 
@@ -27,42 +27,41 @@ package br.com.surittec.util.dto;
  */
 public class Message {
 
-	/*
-	 * Util para utilizacao junto com JSF
-	 */
-	private String componentId;
-	
-	/*
-	 * Util para utilizacao junto com WS
-	 */
 	private String code;
-	private String param;
+	private String component;
 	
 	private String message;
-	private Object[] params;
+	private Object[] messageParams;
 	
 	/*
 	 * Constructors
 	 */
 	
-	public Message(String componentId, String code, String param, String message, Object[] params) {
-		this.componentId = componentId;
+	public Message(String code, String component, String message, Object[] messageParams) {
 		this.code = code;
-		this.param = param;
+		this.component = component;
 		this.message = message;
-		this.params = params;
+		this.messageParams = messageParams;
 	}
-	
+
 	/*
 	 * Gets & Sets
 	 */
 	
-	public String getComponentId() {
-		return componentId;
+	public String getCode() {
+		return code;
 	}
 
-	public void setComponentId(String componentId) {
-		this.componentId = componentId;
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getComponent() {
+		return component;
+	}
+
+	public void setComponent(String component) {
+		this.component = component;
 	}
 
 	public String getMessage() {
@@ -73,28 +72,12 @@ public class Message {
 		this.message = message;
 	}
 
-	public Object[] getParams() {
-		return params;
+	public Object[] getMessageParams() {
+		return messageParams;
 	}
 
-	public void setParams(Object[] params) {
-		this.params = params;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getParam() {
-		return param;
-	}
-
-	public void setParam(String param) {
-		this.param = param;
+	public void setMessageParams(Object[] messageParams) {
+		this.messageParams = messageParams;
 	}
 	
 }
