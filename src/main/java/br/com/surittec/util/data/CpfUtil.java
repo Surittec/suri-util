@@ -43,11 +43,25 @@ public abstract class CpfUtil {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// PUBLIC METHODS
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+
+	/**
+	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para CPF.
+	 * Caso seja nulo, leva em consideração o parâmetro {@code nullable} passado.
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static boolean isValid(Object value) {
 		return isValid(value, false);
 	}
-	
+
+	/**
+	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para CPF.
+	 * Caso seja nulo, leva em consideração o parâmetro {@code nullable} passado.
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static boolean isValid(Object value, boolean nullable) {
 		if(!nullable && value == null) return false;
 
@@ -59,7 +73,13 @@ public abstract class CpfUtil {
 			return true;
 		}
 	}
-	
+
+	/**
+	 * Incluí a máscara padrão para CPF: 99.999.999/9999-99.
+	 * 
+	 * @param cnpj
+	 * @return
+	 */
 	public static String format(String cpf){
 		if (cpf == null) return null;
 
@@ -71,7 +91,13 @@ public abstract class CpfUtil {
 			return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
 		}
 	}
-	
+
+	/**
+	 * Remove a máscara padrão para CPF, deixando apenas os números.
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static String unformat(String value){
 		if(value == null || value.trim().equals("")) return null;
 		return value.replace(".", "").replace("-", "").replace("/", "");

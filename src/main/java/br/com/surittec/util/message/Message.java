@@ -22,21 +22,45 @@ package br.com.surittec.util.message;
 
 /**
  * 
+ * Classe que permite a passagem de mensagens na aplicação, por exemplo, dentro de exceções.
+ * 
+ * {@link br.com.surittec.util.message.Message#code}
+ * {@link br.com.surittec.util.message.Message#component}
+ * {@link br.com.surittec.util.message.Message#message}
+ * {@link br.com.surittec.util.message.Message#messageParams}
+ * 
  * @author Lucas Lins
- *
+ * 
  */
 public class Message {
 
+	/**
+	 * Código da mensagem. Identifica unicamente a mensagem e pode ser utilizado para referencia-las
+	 * em diferentes sistemas.
+	 */
 	private String code;
+
+	/**
+	 * Campo referenciado pela mensagem. Pode ser, por exemplos, um ID de campo no JSF ou um parâmetro
+	 * de Web Service.
+	 */
 	private String component;
-	
+
+	/**
+	 * Mensagem padrão. Essa mensagem pode ser alterada baseando-se no identificador, campo {@code code}.
+	 */
 	private String message;
+
+	/**
+	 * Lista com os parâmetros da mensagem. Caso a mensagem receba parâmetros para ser personalizada,
+	 * essa lista é que conterá esses parâmetros.
+	 */
 	private Object[] messageParams;
-	
+
 	/*
 	 * Constructors
 	 */
-	
+
 	public Message(String code, String component, String message, Object[] messageParams) {
 		this.code = code;
 		this.component = component;
@@ -47,7 +71,7 @@ public class Message {
 	/*
 	 * Gets & Sets
 	 */
-	
+
 	public String getCode() {
 		return code;
 	}
@@ -79,5 +103,5 @@ public class Message {
 	public void setMessageParams(Object[] messageParams) {
 		this.messageParams = messageParams;
 	}
-	
+
 }

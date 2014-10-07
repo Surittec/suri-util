@@ -43,11 +43,25 @@ public abstract class CnpjUtil {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// PUBLIC METHODS
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+
+	/**
+	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para CNPJ.
+	 * Caso seja nulo, leva em consideração o parâmetro {@code nullable} passado.
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static boolean isValid(Object value) {
 		return isValid(value, false);
 	}
-	
+
+	/**
+	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para CNPJ.
+	 * Caso seja nulo, leva em consideração o parâmetro {@code nullable} passado.
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static boolean isValid(Object value, boolean nullable) {
 		if(!nullable && value == null) return false;
 		
@@ -64,6 +78,12 @@ public abstract class CnpjUtil {
 		return false;
 	}
 	
+	/**
+	 * Incluí a máscara padrão para CNPJ: 99.999.999/9999-99.
+	 * 
+	 * @param cnpj
+	 * @return
+	 */
 	public static String format(String cnpj){
 		if(cnpj == null) return null;
 		
@@ -74,6 +94,12 @@ public abstract class CnpjUtil {
 		}
 	}
 	
+	/**
+	 * Remove a máscara padrão para CNPJ, deixando apenas os números.
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static String unformat(String value){
 		if(value == null || value.trim().equals("")) return null;
 		return value.replace(".", "").replace("-", "").replace("/", "");

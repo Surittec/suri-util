@@ -50,10 +50,24 @@ public abstract class EmailUtil {
 	// PUBLIC METHODS
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
+	/**
+	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para E-mail.
+	 * Caso seja nulo, retorna false.
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static boolean isValid(Object value) {
 		return isValid(value, false);
 	}
-	
+
+	/**
+	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para E-mail.
+	 * Caso seja nulo, leva em consideração o parâmetro {@code nullable} passado.
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static boolean isValid(Object value, boolean nullable) {
 		if(!nullable && value == null) return false;
 		

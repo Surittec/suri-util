@@ -30,6 +30,14 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
+ * Classe com métodos utilitários capazes de:
+ * <ul>
+ * 	<li>Personalizar datas (limpando determinados campos);
+ * 	<li>Adicionar ou subtrair valores a campos da data;
+ * 	<li>Recuperar campos específicos da data;
+ * 	<li>Converter formatos de datas;
+ * 	<li>Comparar instâncias de datas diferentes;
+ * </ul>
  * 
  * @author Lucas Lins
  *
