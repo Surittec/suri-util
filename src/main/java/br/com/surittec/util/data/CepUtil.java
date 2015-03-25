@@ -20,39 +20,16 @@
  */
 package br.com.surittec.util.data;
 
-import java.util.regex.Matcher;
-
 /**
  * 
  * @author Lucas Lins
  *
  */
-public abstract class EmailUtil {
-
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// ATTIRBUTES
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-	private static String ATOM = "[a-z0-9!#$%&'*+/=?^_`{|}~-]";
-	private static String DOMAIN = "(" + ATOM + "+(\\." + ATOM + "+)*";
-	private static String IP_DOMAIN = "\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\]";
-
-	private static java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(
-			"^" + ATOM + "+(\\." + ATOM + "+)*@"
-					+ DOMAIN
-					+ "|"
-					+ IP_DOMAIN
-					+ ")$",
-			java.util.regex.Pattern.CASE_INSENSITIVE
-	);
-	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// PUBLIC METHODS
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public abstract class CepUtil {
 	
 	/**
-	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para E-mail.
-	 * Caso seja nulo, retorna false.
+	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para CEP.
+	 * Caso seja nulo, leva em consideração o parâmetro {@code nullable} passado.
 	 * 
 	 * @param value
 	 * @return
@@ -62,7 +39,7 @@ public abstract class EmailUtil {
 	}
 
 	/**
-	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para E-mail.
+	 * Verifica se um objeto passado é uma {@code String} e possuí um valor válido para CEP.
 	 * Caso seja nulo, leva em consideração o parâmetro {@code nullable} passado.
 	 * 
 	 * @param value
@@ -70,15 +47,41 @@ public abstract class EmailUtil {
 	 */
 	public static boolean isValid(Object value, boolean nullable) {
 		if(!nullable && value == null) return false;
-		
+
 		if(nullable && value == null) return true;
 		
-		if (value instanceof String) {
-			String email = (String) value;
-			Matcher m = pattern.matcher(email);
-			return m.matches();
+		if (value != null && !value.toString().matches("^\\d{8}$")) {
+			return false;
+		}else{
+			return true;
 		}
-		return false;
+	}
+	
+	/**
+	 * Incluí a máscara padrão para CEP: 99999-999
+	 * 
+	 * @param cnpj
+	 * @return
+	 */
+	public static String format(String cep){
+		if(cep == null) return null;
+		
+		if (cep.length() == 9 || cep.length() < 8) {
+			return cep;
+		}else {
+			return cep.substring(0, cep.length() - 3) + "-" + cep.substring(cep.length() - 3);
+		}
+	}
+	
+	/**
+	 * Remove a máscara padrão para CEP, deixando apenas os números.
+	 * 
+	 * @param value
+	 * @return
+	 */
+	public static String unformat(String value){
+		if(value == null || value.trim().equals("")) return null;
+		return value.replace("-", "");
 	}
 	
 }

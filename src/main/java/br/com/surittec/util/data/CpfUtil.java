@@ -1,6 +1,6 @@
 /*
  * SURITTEC
- * Copyright 2014, SURITTEC CONSULTORIA LTDA, 
+ * Copyright 2015, SURITTEC CONSULTORIA LTDA, 
  * and individual contributors as indicated by the @authors tag
  *
  * This is free software; you can redistribute it and/or modify it
@@ -83,9 +83,7 @@ public abstract class CpfUtil {
 	public static String format(String cpf){
 		if (cpf == null) return null;
 
-		if (cpf.length() == 13) {
-			return cpf;
-		} else if (cpf.length() < 11) {
+		if (cpf.length() == 13 || cpf.length() < 11) {
 			return cpf;
 		} else {
 			return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
