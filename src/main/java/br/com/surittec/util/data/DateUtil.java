@@ -58,7 +58,15 @@ public class DateUtil {
 	/*
 	 * First / Last
 	 */
-	
+
+	public static Date firstTime(Locale locale) {
+		return toFirstTime(new Date(), locale);
+	}
+
+	public static Date firstTime() {
+		return firstTime(null);
+	}
+
 	public static Date toFirstTime(Date date) {
 		return toFirstTime(date, null);
 	}
@@ -69,6 +77,14 @@ public class DateUtil {
 		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 0, 0, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		return cal.getTime();
+	}
+
+	public static Date lastTime(Locale locale) {
+		return toLastTime(new Date(), locale);
+	}
+
+	public static Date lastTime() {
+		return lastTime(null);
 	}
 	
 	public static Date toLastTime(Date date) {
@@ -82,6 +98,14 @@ public class DateUtil {
 		cal.set(Calendar.MILLISECOND, 999);
 		return cal.getTime();
 	}
+
+	public static Date firstDateOfMonth(Locale locale) {
+		return toFirstDateOfMonth(new Date(), locale);
+	}
+
+	public static Date firstDateOfMonth() {
+		return firstDateOfMonth(null);
+	}
 	
 	public static Date toFirstDateOfMonth(Date date){
 		return toFirstDateOfMonth(date, null);
@@ -93,7 +117,15 @@ public class DateUtil {
 		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH)); 
 		return toFirstTime(cal.getTime());
 	}
-	
+
+	public static Date lastDateOfMonth(Locale locale) {
+		return toLastDateOfMonth(new Date(), locale);
+	}
+
+	public static Date lastDateOfMonth() {
+		return lastDateOfMonth(null);
+	}
+
 	public static Date toLastDateOfMonth(Date date){
 		return toLastDateOfMonth(date, null);
 	}
