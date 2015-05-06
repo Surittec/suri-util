@@ -37,30 +37,45 @@ public abstract class ExceptionUtil {
 	 * @param exception
 	 * @return
 	 */
-	public static Throwable getRootCause(Throwable exception){
-		while(exception.getCause() != null) exception = exception.getCause();
+	public static Throwable getRootCause(Throwable exception) {
+		while (exception.getCause() != null)
+			exception = exception.getCause();
 		return exception;
 	}
-	
+
 	/**
-	 * Obtem a root stack trace em formato texto 
+	 * Obtem a root stack trace em formato texto
 	 * 
 	 * @param exception
 	 * @return
 	 */
-	public static String getRootStackTrace(Throwable exception){
+	public static String getRootStackTrace(Throwable exception) {
 		return getStackTrace(getRootCause(exception));
 	}
-	
+
 	/**
 	 * Obtem a stack trace em formato texto
 	 * 
 	 * @param exception
 	 * @return
 	 */
-	public static String getStackTrace(Throwable exception){
-		StringWriter sw = new StringWriter();
-		exception.printStackTrace(new PrintWriter(sw));
-		return sw.toString();
+	public static String getStackTrace(Throwable exception) {
+		StringWriter sw = null;
+		PrintWriter pw = null;
+		try {
+			sw = new StringWriter();
+			pw = new PrintWriter(sw);
+			exception.printStackTrace(pw);
+			return sw.toString();
+		} finally {
+			try {
+				pw.close();
+			} catch (Exception e) {
+			}
+			try {
+				sw.close();
+			} catch (Exception e) {
+			}
+		}
 	}
 }
