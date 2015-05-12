@@ -165,6 +165,14 @@ public class DateUtil {
 	 * Add / Sub
 	 */
 	
+	public static Date setMillisecond(Date date, int value){
+		return setMillisecond(date, value, null);
+	}
+	
+	public static Date setMillisecond(Date date, int value, Locale locale){
+		return setField(date, Calendar.MILLISECOND, value, locale);
+	}
+	
 	public static Date addMillisecond(Date date, int amount){
 		return addMillisecond(date, amount, null);
 	}
@@ -179,6 +187,14 @@ public class DateUtil {
 	
 	public static Date subMillisecond(Date date, int amount, Locale locale){
 		return addToField(date, Calendar.MILLISECOND, amount * -1, locale);
+	}
+	
+	public static Date setSecond(Date date, int value){
+		return setSecond(date, value, null);
+	}
+	
+	public static Date setSecond(Date date, int value, Locale locale){
+		return setField(date, Calendar.SECOND, value, locale);
 	}
 	
 	public static Date addSecond(Date date, int amount){
@@ -197,6 +213,14 @@ public class DateUtil {
 		return addToField(date, Calendar.SECOND, amount * -1, locale);
 	}
 	
+	public static Date setMinute(Date date, int value){
+		return setMinute(date, value, null);
+	}
+	
+	public static Date setMinute(Date date, int value, Locale locale){
+		return setField(date, Calendar.MINUTE, value, locale);
+	}
+	
 	public static Date addMinute(Date date, int amount){
 		return addMinute(date, amount, null);
 	}
@@ -211,6 +235,14 @@ public class DateUtil {
 	
 	public static Date subMinute(Date date, int amount, Locale locale){
 		return addToField(date, Calendar.MINUTE, amount * -1, locale);
+	}
+	
+	public static Date setHour(Date date, int value){
+		return setHour(date, value, null);
+	}
+	
+	public static Date setHour(Date date, int value, Locale locale){
+		return setField(date, Calendar.HOUR_OF_DAY, value, locale);
 	}
 	
 	public static Date addHour(Date date, int amount){
@@ -229,6 +261,14 @@ public class DateUtil {
 		return addToField(date, Calendar.HOUR_OF_DAY, amount * -1, locale);
 	}
 	
+	public static Date setDay(Date date, int value){
+		return setDay(date, value, null);
+	}
+	
+	public static Date setDay(Date date, int value, Locale locale){
+		return setField(date, Calendar.DAY_OF_MONTH, value, locale);
+	}
+	
 	public static Date addDay(Date date, int amount){
 		return addDay(date, amount, null);
 	}
@@ -245,6 +285,14 @@ public class DateUtil {
 		return addToField(date, Calendar.DAY_OF_MONTH, amount * -1, locale);
 	}
 	
+	public static Date setMonth(Date date, int value){
+		return setMonth(date, value, null);
+	}
+	
+	public static Date setMonth(Date date, int value, Locale locale){
+		return setField(date, Calendar.MONTH, value, locale);
+	}
+	
 	public static Date addMonth(Date date, int amount){
 		return addMonth(date, amount, null);
 	}
@@ -259,6 +307,14 @@ public class DateUtil {
 	
 	public static Date subMonth(Date date, int amount, Locale locale){
 		return addToField(date, Calendar.MONTH, amount * -1, locale);
+	}
+	
+	public static Date setYear(Date date, int value){
+		return setYear(date, value, null);
+	}
+	
+	public static Date setYear(Date date, int value, Locale locale){
+		return setField(date, Calendar.YEAR, value, locale);
 	}
 	
 	public static Date addYear(Date date, int amount){
@@ -285,6 +341,13 @@ public class DateUtil {
 		Calendar calendar = getCalendar(locale);
 		calendar.setTime(date);
 		calendar.add(field, amount);
+		return calendar.getTime();
+	}
+	
+	public static Date setField(Date date, int field, int value, Locale locale){
+		Calendar calendar = getCalendar(locale);
+		calendar.setTime(date);
+		calendar.set(field, value);
 		return calendar.getTime();
 	}
 	
