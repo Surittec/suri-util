@@ -29,6 +29,11 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Months;
+import org.joda.time.Years;
+
 /**
  * Classe com métodos utilitários capazes de:
  * <ul>
@@ -43,9 +48,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *
  */
 public class DateUtil {
-	
-	private static final int MILLISECOND_TO_DAY = 1000 * 60 * 60 * 24;
-	private static final int MILLISECOND_TO_MINUTE = 1000 * 60;
 
 	/*
 	 * Get Calendar by Locale
@@ -378,29 +380,27 @@ public class DateUtil {
 	/*
 	 * Ranges
 	 */
+	
+	public static long daysBetween(Date from, Date to) {
+		DateTime start = new DateTime(toFirstTime(from).getTime());
+		DateTime end = new DateTime(toFirstTime(to).getTime());
+		return Days.daysBetween(start, end).getDays();
+	}
+	
+	public static int yearsBetween(Date from, Date to) {
+		DateTime start = new DateTime(toFirstTime(from).getTime());
+		DateTime end = new DateTime(toFirstTime(to).getTime());
+		return Years.yearsBetween(start, end).getYears();
+	}
+	
+	public static long monthsBetween(Date from, Date to) {
+		DateTime start = new DateTime(toFirstTime(from).getTime());
+		DateTime end = new DateTime(toFirstTime(to).getTime());
+		return Months.monthsBetween(
+				start.withDayOfMonth(1),
+				end.withDayOfMonth(1)).getMonths();
+	}
 
-	public static long daysBetween(Date from, Date to){
-		return (toFirstTime(to).getTime() - toFirstTime(from).getTime()) / MILLISECOND_TO_DAY;
-	}
-	
-	public static long minutesBetween(Date from, Date to){
-		return (to.getTime() - from.getTime()) / MILLISECOND_TO_MINUTE;
-	}
-	
-	public static int yearsBetween(Date from, Date to){
-		Calendar fromC = getCalendar(null);
-        fromC.setTime(from);
-        
-        Calendar toC = getCalendar(null);
-        toC.setTime(to);
-        
-        int years = toC.get(Calendar.YEAR) - fromC.get(Calendar.YEAR);
-        fromC.add(Calendar.YEAR, years);
-        if (toC.before(fromC)) years--;
-        
-        return years;
-	}
-	
 	public static int getAge(Date dateOfBirth){
 		return yearsBetween(dateOfBirth, new Date());
     }
