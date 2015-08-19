@@ -31,6 +31,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.joda.time.Hours;
 import org.joda.time.Minutes;
 import org.joda.time.Months;
 import org.joda.time.Seconds;
@@ -401,6 +402,12 @@ public class DateUtil {
 		return Months.monthsBetween(
 				start.withDayOfMonth(1),
 				end.withDayOfMonth(1)).getMonths();
+	}
+	
+	public static long hoursBetween(Date from, Date to) {
+		DateTime start = new DateTime(from.getTime());
+		DateTime end = new DateTime(to.getTime());
+		return Hours.hoursBetween(start, end).getHours();
 	}
 	
 	public static long minutesBetween(Date from, Date to) {
