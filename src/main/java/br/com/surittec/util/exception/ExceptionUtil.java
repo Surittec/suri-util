@@ -38,7 +38,7 @@ public abstract class ExceptionUtil {
 	 * @return
 	 */
 	public static Throwable getRootCause(Throwable exception) {
-		while (exception.getCause() != null)
+		while (exception.getCause() != null && exception != exception.getCause())
 			exception = exception.getCause();
 		return exception;
 	}
