@@ -46,12 +46,21 @@ public class BusinessException extends RuntimeException {
 	// CONSTRUCTORS
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+	
 	/**
 	 * Instancia uma nova BusinessException sem nenhum código de mensagem
 	 * lançado.
 	 */
 	public BusinessException() {
 		super();
+	}
+	
+	/**
+	 * Instancia uma nova BusinessException sem nenhum código de mensagem
+	 * lançado, mas com a causa.
+	 */
+	public BusinessException(Throwable throwable) {
+		super(throwable);
 	}
 
 	/**
@@ -61,12 +70,30 @@ public class BusinessException extends RuntimeException {
 	public BusinessException(String message, Object... params) {
 		addMessage(message, params);
 	}
+	
+	/**
+	 * Instancia uma nova BusinessException com a causa, com uma mensagem de valor
+	 * <code>message</code> e com possíveis parâmetros em <code>params</code>.
+	 */
+	public BusinessException(Throwable throwable, String message, Object... params) {
+		super(throwable);
+		addMessage(message, params);
+	}
 
 	/**
 	 * Instancia uma nova BusinessException contendo a <code>Message</code>
 	 * passada por parâmetro.
 	 */
 	public BusinessException(Message message) {
+		addMessage(message);
+	}
+	
+	/**
+	 * Instancia uma nova BusinessException contendo a causa e a <code>Message</code>
+	 * passada por parâmetro.
+	 */
+	public BusinessException(Throwable throwable, Message message) {
+		super(throwable);
 		addMessage(message);
 	}
 
